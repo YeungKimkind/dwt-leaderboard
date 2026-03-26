@@ -59,7 +59,7 @@ body { background: var(--surface-base); color: var(--text-full); font-family: 'G
 .team-details { max-height: 0; overflow: hidden; -webkit-transition: max-height 0.3s ease; transition: max-height 0.3s ease; background: var(--surface-base); border: 1px solid var(--border-color); border-top: none; border-radius: 0 0 6px 6px; margin-top: -3px; }
 .team-details.open { max-height: 400px; }
 .details-inner { padding: 0.4rem 0.5rem; }
-.player-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
+.player-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
 .player-card { background: var(--surface-body); border: 1px solid var(--border-color); border-radius: 4px; padding: 0.35rem 0.5rem; position: relative; }
 .player-card.is-mvp { border-color: var(--gold); }
 .mvp-tag { position: absolute; top: 0.25rem; right: 0.4rem; font-size: 0.5rem; font-weight: 700; color: var(--gold); letter-spacing: 0.094rem; text-transform: uppercase; }
@@ -108,7 +108,7 @@ body { background: var(--surface-base); color: var(--text-full); font-family: 'G
   .team-meta { display: none; }
   .stats-bar { gap: 1rem; }
   .stat-value { font-size: 0.85rem; }
-  .player-grid { grid-template-columns: 1fr 1fr; }
+  .player-grid { grid-template-columns: repeat(2, 1fr); }
   .finals-bracket { grid-template-columns: 1fr 1fr; gap: 6px; }
   .score-value { font-size: 0.85rem; }
 }
@@ -304,7 +304,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var tabs = document.querySelectorAll('.phase-tab');
   for (var t = 0; t < tabs.length; t++) { (function(tab) { tab.addEventListener('click', function() { showPhase(tab.getAttribute('data-phase')); }); })(tabs[t]); }
   var count = 15;
-  setInterval(function() { count--; if (count <= 0) count = 15; var el1 = document.getElementById('countdown'); var el2 = document.getElementById('countdown-finals'); if (el1) el1.textContent = count; if (el2) el2.textContent = count; }, 1000);
+  setInterval(function() { count--; var el1 = document.getElementById('countdown'); var el2 = document.getElementById('countdown-finals'); if (el1) el1.textContent = count; if (el2) el2.textContent = count; if (count <= 0) { window.location.reload(); } }, 1000);
 });
 </script>
 </body>
