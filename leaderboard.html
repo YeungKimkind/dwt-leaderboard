@@ -51,7 +51,8 @@ body { background: var(--surface-base); color: var(--text-full); font-family: 'G
 .team-name { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.031rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .team-players { font-size: 0.6rem; font-weight: 400; color: var(--text-low); letter-spacing: 0.025rem; margin-top: 0.1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .team-sid { font-size: 0.5rem; font-weight: 400; color: var(--text-disabled); letter-spacing: 0.02rem; margin-top: 0.05rem; font-family: monospace; }
-.team-score { text-align: right; padding-right: 0.5rem; }
+.team-scores { display: -webkit-flex; display: flex; gap: 1rem; -webkit-justify-content: flex-end; justify-content: flex-end; }
+.team-score { text-align: right; }
 .score-value { font-size: 0.95rem; font-weight: 700; letter-spacing: 0.016rem; }
 .score-label { font-size: 0.5rem; font-weight: 500; color: var(--text-low); text-transform: uppercase; letter-spacing: 0.094rem; }
 .team-meta { text-align: right; font-size: 0.6rem; font-weight: 400; color: var(--text-medium); letter-spacing: 0.025rem; line-height: 1.4; }
@@ -107,7 +108,7 @@ body { background: var(--surface-base); color: var(--text-full); font-family: 'G
   .container { padding: 0.6rem 0.5rem; }
   .header-logo { max-width: 160px; }
   .event-name { font-size: 0.9rem; }
-  .team-row { grid-template-columns: 28px 1fr 80px; padding: 0.35rem 0.5rem; }
+  .team-row { grid-template-columns: 28px 1fr auto; padding: 0.35rem 0.5rem; }
   .team-meta { display: none; }
   .stats-bar { gap: 1rem; }
   .stat-value { font-size: 0.85rem; }
@@ -207,8 +208,10 @@ function renderLeaderboard() {
       row.innerHTML =
         '<div class="rank-num">' + rank + '</div>' +
         '<div class="team-info"><div class="team-name">' + team.name + '</div><div class="team-players">' + playerNames.join(' &middot; ') + '</div>' + (team.sid ? '<div class="team-sid">' + team.sid + '</div>' : '') + '</div>' +
-        '<div class="team-score"><div class="score-value">' + formatScore(team.score) + '</div><div class="score-label">Total Score</div></div>' +
-        (team.maxCombo ? '<div class="team-score"><div class="score-value">' + team.maxCombo + '</div><div class="score-label">Max Combo</div></div>' : '') +
+        '<div class="team-scores">' +
+          (team.maxCombo ? '<div class="team-score"><div class="score-value">' + team.maxCombo + '</div><div class="score-label">Max Combo</div></div>' : '') +
+          '<div class="team-score"><div class="score-value">' + formatScore(team.score) + '</div><div class="score-label">Total Score</div></div>' +
+        '</div>' +
         '<div class="team-meta"><div>' + team.deaths + ' deaths</div><div>' + (team.rating ? team.rating + '/5 &#9733;' : '') + '</div></div>';
       row.addEventListener('click', function() {
         var det = document.getElementById('details-' + idx);
