@@ -100,6 +100,9 @@ body { background: var(--surface-base); color: var(--text-full); font-family: 'G
 .refresh-bar .countdown { color: var(--text-medium); }
 @-webkit-keyframes slideIn { from{opacity:0;-webkit-transform:translateY(8px)} to{opacity:1;-webkit-transform:translateY(0)} }
 @keyframes slideIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+@media (min-width: 701px) {
+  html { font-size: 18px; }
+}
 @media (max-width: 700px) {
   .container { padding: 0.6rem 0.5rem; }
   .header-logo { max-width: 160px; }
