@@ -57,7 +57,7 @@ body { background: var(--surface-base); color: var(--text-full); font-family: 'G
 .team-meta { text-align: right; font-size: 0.6rem; font-weight: 400; color: var(--text-medium); letter-spacing: 0.025rem; line-height: 1.4; }
 .qualified-tag { color: var(--qualified-green); font-weight: 500; }
 .team-details { max-height: 0; overflow: hidden; -webkit-transition: max-height 0.3s ease; transition: max-height 0.3s ease; background: var(--surface-base); border: 1px solid var(--border-color); border-top: none; border-radius: 0 0 6px 6px; margin-top: -3px; }
-.team-details.open { max-height: 400px; }
+.team-details.open { max-height: 800px; }
 .details-inner { padding: 0.4rem 0.5rem; }
 .player-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
 .player-card { background: var(--surface-body); border: 1px solid var(--border-color); border-radius: 4px; padding: 0.35rem 0.5rem; position: relative; }
@@ -206,15 +206,8 @@ function renderLeaderboard() {
       });
       container.appendChild(row);
       var details = document.createElement('div');
-      details.className = 'team-details' + (idx < 3 ? ' open' : '');
+      details.className = 'team-details' + (idx < 4 ? ' open' : '');
       details.id = 'details-' + idx;
-
-      // For ranks 4+, only show a minimal summary (no player cards or wave timeline)
-      if (idx >= 3) {
-        details.innerHTML = '<div class="details-inner" style="padding:0.3rem 0.5rem;font-size:0.6rem;color:#8895a7;">' + team.deaths + ' deaths &middot; ' + team.result + '</div>';
-        container.appendChild(details);
-        return;
-      }
 
       // Players
       var playersHtml = '';
