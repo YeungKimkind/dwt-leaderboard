@@ -208,7 +208,8 @@ function renderLeaderboard() {
         '<div class="rank-num">' + rank + '</div>' +
         '<div class="team-info"><div class="team-name">' + team.name + '</div><div class="team-players">' + playerNames.join(' &middot; ') + '</div>' + (team.sid ? '<div class="team-sid">' + team.sid + '</div>' : '') + '</div>' +
         '<div class="team-score"><div class="score-value">' + formatScore(team.score) + '</div><div class="score-label">Total Score</div></div>' +
-        '<div class="team-meta"><div>' + team.deaths + ' deaths</div><div>' + (team.rating ? team.rating + '/5 &#9733;' : '') + (team.maxCombo ? ' &middot; Combo ' + team.maxCombo : '') + '</div></div>';
+        (team.maxCombo ? '<div class="team-score"><div class="score-value">' + team.maxCombo + '</div><div class="score-label">Max Combo</div></div>' : '') +
+        '<div class="team-meta"><div>' + team.deaths + ' deaths</div><div>' + (team.rating ? team.rating + '/5 &#9733;' : '') + '</div></div>';
       row.addEventListener('click', function() {
         var det = document.getElementById('details-' + idx);
         if (det) { if (det.className.indexOf('open') >= 0) { det.className = det.className.replace(' open', ''); } else { det.className = det.className + ' open'; } }
